@@ -1,8 +1,7 @@
 # Guppy
 
-**Guppy** provides a collection of utility functions.
-
-At the moment, **Guppy** offers following utilities:
+**Guppy** provides a collection of utility functions. 
+At the moment, **Guppy** offers following the utilities:
 
 |Area|Function|Purpose|
 |---|---|---|
@@ -28,7 +27,7 @@ If you do not have Go installed yet, you can find installation instructions
 To pull the most recent version of **Guppy**, use `go get`.
 
 ```
-go get -u github.com/bijeshos/guppy
+go get github.com/bijeshos/guppy
 ```
 
 Then import respective packages into your project.
@@ -37,10 +36,10 @@ To avoid any potential conflicts, it is suggested to use custom package name as 
 
 |Full Package Name|Suggested Custom name|Stands for|
 |---|---|---|
-|github.com/bijeshos/guppy/arrayutil|gau| guppy array util|
-|github.com/bijeshos/guppy/fileutil|gfu| guppy file util|
-|github.com/bijeshos/guppy/dirutil|gdu| guppy directory util|
-|github.com/bijeshos/guppy/stringutil|gsu| guppy string util|
+|github.com/bijeshos/guppy/arrayutil|gau| Guppy Array Util|
+|github.com/bijeshos/guppy/fileutil|gfu| Guppy File Util|
+|github.com/bijeshos/guppy/dirutil|gdu| Guppy Directory Util|
+|github.com/bijeshos/guppy/stringutil|gsu| Guppy String Util|
 
 So, the package import statements would look like the following:
 
@@ -52,4 +51,14 @@ import gsu "github.com/bijeshos/guppy/stringutil"
 ```
 
 ## Usage
-- TBD
+Usage details are available as part of the godoc. 
+
+In order to view godoc, follow the below steps:
+- Refer documentation by running 
+```
+godoc -http=:6060
+```
+- Open the following URL in a browser:
+http://localhost:6060/pkg/github.com/bijeshos/guppy/
+  
+- Traverse to respective sub packages
