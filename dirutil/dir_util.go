@@ -47,7 +47,7 @@ func ReadDirs(srcDir string, ignoreList []string) ([]string, error) {
 /*func ReadAll(srcDir string, ignoreList []string) ([]string, error) {
 	var files []string
 	err := filepath.Walk(srcDir, func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() && gau.arrayutil.IsPresent(ignoreList, info.Name()) {
+		if info.IsDir() && gau.IsPresent(ignoreList, info.Name()) {
 			return filepath.SkipDir
 		}
 		files = append(files, path)
@@ -68,9 +68,8 @@ func MkDirAll(targetDir string) error {
 			if err != nil {
 				return err
 			}
-		} else {
-			return err
 		}
+		return err
 	}
 	return nil
 }
