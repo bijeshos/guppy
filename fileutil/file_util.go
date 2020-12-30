@@ -120,7 +120,7 @@ func isSameMetadata(srcFilePath string, targetFilePath string) (bool, error) {
 
 }
 
-func ReadFile(filePath string) ([]string, error) {
+func ReadFileContent(filePath string) ([]string, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		//zap.S().Errorw("error occurred: ", "error", err)
