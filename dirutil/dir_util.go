@@ -103,7 +103,6 @@ func IsSame(srcDir string, targetDir string) (bool, error) {
 	// check if source and target dirs are same
 	if os.SameFile(srcInfo, targetInfo) {
 		return true, nil
-	} else {
-		return false, nil
 	}
+	return false, nil
 }
