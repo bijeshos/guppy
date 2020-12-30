@@ -17,7 +17,6 @@ func CreateFile(targetDir, fileName string) error {
 	}
 	_, err := os.Create(filepath.Join(targetDir, fileName))
 	if err != nil {
-		//zap.S().Fatalw("error occurred: ", "error", err)
 		return err
 	}
 	return nil
@@ -28,23 +27,24 @@ func CopyFile(srcPath, targetPath string, forceReplace bool) error {
 	//open source file
 	src, err := os.Open(srcPath)
 	if err != nil {
-		//zap.S().Errorw("error occurred: ", "error", err)
 		return err
 	}
 	defer src.Close()
 
 	//create sub directories at target if needed
 	targetSubDir := filepath.Dir(targetPath)
-	gdu.MkDirAll(targetSubDir)
+	err = gdu.MkDirAll(targetSubDir)
+	if err != nil {
+		return err
+	}
 
 	//open target file
 	target, err := os.OpenFile(targetPath, os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
-		//zap.S().Errorw("error occurred: ", "error", err)
 		return err
 	}
 	defer target.Close()
-	var proceedCopy bool = false
+	proceedCopy := false
 
 	if forceReplace {
 		proceedCopy = true
@@ -67,24 +67,25 @@ func MoveFile(srcPath, targetPath string, forceReplace bool) error {
 
 	//create sub directories at target if needed
 	targetSubDir := filepath.Dir(targetPath)
-	gdu.MkDirAll(targetSubDir)
+	err := gdu.MkDirAll(targetSubDir)
+	if err != nil {
+		return err
+	}
 
-	var proceedCopy = false
+	proceedMove := false
 
 	if forceReplace {
-		proceedCopy = true
+		proceedMove = true
 	} else {
 		isSame, _ := isSameMetadata(srcPath, targetPath)
-		proceedCopy = !isSame
+		proceedMove = !isSame
 	}
-	if proceedCopy {
+	if proceedMove {
 		//perform move
 		err := os.Rename(srcPath, targetPath)
 		if err != nil {
 			return err
 		}
-	} else {
-
 	}
 	return nil
 }
@@ -105,9 +106,8 @@ func isSameMetadata(srcFilePath string, targetFilePath string) (bool, error) {
 
 	if strings.Compare(srcFileInfo.Name(), targetFileInfo.Name()) == 0 && srcFileInfo.Size() == targetFileInfo.Size() {
 		return true, nil
-	} else {
-		return false, nil
 	}
+	return false, nil
 
 }
 
@@ -115,7 +115,6 @@ func isSameMetadata(srcFilePath string, targetFilePath string) (bool, error) {
 func ReadFileContent(inputFilePath string) ([]string, error) {
 	file, err := os.Open(inputFilePath)
 	if err != nil {
-		//zap.S().Errorw("error occurred: ", "error", err)
 		return nil, err
 	}
 	defer file.Close()
