@@ -1,7 +1,7 @@
 # Guppy
 
 **Guppy** provides a collection of utility functions. 
-At the moment, **Guppy** offers following the utilities:
+At the moment, **Guppy** offers following utilities:
 
 |Area|Function|Purpose|
 |---|---|---|

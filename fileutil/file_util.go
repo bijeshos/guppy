@@ -2,7 +2,7 @@ package fileutil
 
 import (
 	"bufio"
-	"github.com/bijeshos/guppy/dirutil"
+	gdu "github.com/bijeshos/guppy/dirutil"
 	"io"
 	"os"
 	"path/filepath"
@@ -11,11 +11,10 @@ import (
 
 //CreateFile creates a file in the target directory, including creating missing directories in the path
 func CreateFile(targetDir, fileName string) error {
-	dirErr := dirutil.MkDirAll(targetDir)
+	dirErr := gdu.MkDirAll(targetDir)
 	if dirErr != nil {
 		return dirErr
 	}
-	//_, err := os.OpenFile(filepath.Join(targetDir, fileName), os.O_RDWR|os.O_CREATE, 0666)
 	_, err := os.Create(filepath.Join(targetDir, fileName))
 	if err != nil {
 		//zap.S().Fatalw("error occurred: ", "error", err)
@@ -26,7 +25,6 @@ func CreateFile(targetDir, fileName string) error {
 
 //CopyFile copies a file from source path to target path
 func CopyFile(srcPath, targetPath string, forceReplace bool) error {
-
 	//open source file
 	src, err := os.Open(srcPath)
 	if err != nil {
@@ -37,7 +35,7 @@ func CopyFile(srcPath, targetPath string, forceReplace bool) error {
 
 	//create sub directories at target if needed
 	targetSubDir := filepath.Dir(targetPath)
-	dirutil.MkDirAll(targetSubDir)
+	gdu.MkDirAll(targetSubDir)
 
 	//open target file
 	target, err := os.OpenFile(targetPath, os.O_RDWR|os.O_CREATE, 0666)
@@ -55,14 +53,11 @@ func CopyFile(srcPath, targetPath string, forceReplace bool) error {
 		proceedCopy = !isSame
 	}
 	if proceedCopy {
-
 		//perform copying
 		_, err = io.Copy(target, src)
 		if err != nil {
-			//zap.S().Errorw("error occurred: ", "error", err)
 			return err
 		}
-
 	}
 	return nil
 }
@@ -72,7 +67,7 @@ func MoveFile(srcPath, targetPath string, forceReplace bool) error {
 
 	//create sub directories at target if needed
 	targetSubDir := filepath.Dir(targetPath)
-	dirutil.MkDirAll(targetSubDir)
+	gdu.MkDirAll(targetSubDir)
 
 	var proceedCopy = false
 
@@ -83,7 +78,6 @@ func MoveFile(srcPath, targetPath string, forceReplace bool) error {
 		proceedCopy = !isSame
 	}
 	if proceedCopy {
-
 		//perform move
 		err := os.Rename(srcPath, targetPath)
 		if err != nil {
@@ -103,14 +97,11 @@ func isSameMetadata(srcFilePath string, targetFilePath string) (bool, error) {
 		return false, srcErr
 	}
 
-	//zap.S().Debugw("src file", "info", srcFileInfo)
-
 	if targetErr != nil {
 		if os.IsNotExist(targetErr) {
 			return false, targetErr
 		}
 	}
-	//zap.S().Debugw("target file", "info", targetFileInfo)
 
 	if strings.Compare(srcFileInfo.Name(), targetFileInfo.Name()) == 0 && srcFileInfo.Size() == targetFileInfo.Size() {
 		return true, nil
@@ -135,9 +126,7 @@ func ReadFileContent(inputFilePath string) ([]string, error) {
 		lines = append(lines, scanner.Text())
 	}
 
-	//fmt.Println(lines)
 	if err := scanner.Err(); err != nil {
-		//zap.S().Errorw("error occurred: ", "error", err)
 		return nil, err
 	}
 	return lines, nil
