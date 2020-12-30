@@ -1,7 +1,4 @@
-module "github.com/bijeshos/guppy"
+module github.com/bijeshos/guppy
 
 go 1.15
 
-require (
-
-)
