@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-//CreateFile
+//CreateFile creates a file in the target directory, including creating missing directories in the path
 func CreateFile(targetDir, fileName string) error {
 	dirErr := dirutil.MkDirAll(targetDir)
 	if dirErr != nil {
@@ -24,7 +24,7 @@ func CreateFile(targetDir, fileName string) error {
 	return nil
 }
 
-//CopyFile
+//CopyFile copies a file from source path to target path
 func CopyFile(srcPath, targetPath string, forceReplace bool) error {
 
 	//open source file
@@ -67,7 +67,7 @@ func CopyFile(srcPath, targetPath string, forceReplace bool) error {
 	return nil
 }
 
-//MoveFile
+//MoveFile moves a file from source path to target path
 func MoveFile(srcPath, targetPath string, forceReplace bool) error {
 
 	//create sub directories at target if needed
@@ -120,8 +120,9 @@ func isSameMetadata(srcFilePath string, targetFilePath string) (bool, error) {
 
 }
 
-func ReadFile(filePath string) ([]string, error) {
-	file, err := os.Open(filePath)
+//ReadFileContent read content of the input file to a string array
+func ReadFileContent(inputFilePath string) ([]string, error) {
+	file, err := os.Open(inputFilePath)
 	if err != nil {
 		//zap.S().Errorw("error occurred: ", "error", err)
 		return nil, err
