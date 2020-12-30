@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-//ReadFiles to read from dir
+//ReadFiles reads files from the source directory, excluding the files based on ignore list pattern
 func ReadFiles(srcDir string, ignoreList []string) ([]string, error) {
 
 	var files []string
@@ -26,6 +26,7 @@ func ReadFiles(srcDir string, ignoreList []string) ([]string, error) {
 	return files, nil
 }
 
+//ReadDirs reads directories from the source directory, excluding the directories based on ignore list pattern
 func ReadDirs(srcDir string, ignoreList []string) ([]string, error) {
 
 	var dirs []string
@@ -63,12 +64,11 @@ func ReadDirs(srcDir string, ignoreList []string) ([]string, error) {
 	return files, nil
 }*/
 
-//MkDirAll to create directories
+//MkDirAll creates directories in the full path, creating intermediate directories if not present
 func MkDirAll(targetDir string) error {
 	_, err := os.Stat(targetDir)
 	if err != nil {
 		if os.IsNotExist(err) {
-
 			err := os.MkdirAll(targetDir, os.ModePerm)
 			if err != nil {
 				return err
@@ -80,7 +80,7 @@ func MkDirAll(targetDir string) error {
 	return nil
 }
 
-//IsExist to check if the directory exists
+//IsExist checks if the directory already exists
 func IsExist(dir string) (bool, error) {
 	//check whether directory exists
 	_, err := os.Stat(dir)
@@ -94,7 +94,7 @@ func IsExist(dir string) (bool, error) {
 	return true, nil
 }
 
-//IsSame to check if both directories are same
+//IsSame check if both source and target directories are same
 func IsSame(srcDir string, targetDir string) (bool, error) {
 
 	srcInfo, srcErr := os.Stat(srcDir)
