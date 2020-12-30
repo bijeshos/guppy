@@ -1,17 +1,16 @@
 package dirutil
 
 import (
-	"github.com/bijeshos/guppy/arrayutil"
+	gau "github.com/bijeshos/guppy/arrayutil"
 	"os"
 	"path/filepath"
 )
 
 //ReadFiles reads files from the source directory, excluding the files based on ignore list pattern
 func ReadFiles(srcDir string, ignoreList []string) ([]string, error) {
-
 	var files []string
 	err := filepath.Walk(srcDir, func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() && arrayutil.IsPresent(ignoreList, info.Name()) {
+		if info.IsDir() && gau.IsPresent(ignoreList, info.Name()) {
 			return filepath.SkipDir
 		}
 		if !info.IsDir() {
@@ -19,7 +18,6 @@ func ReadFiles(srcDir string, ignoreList []string) ([]string, error) {
 		}
 		return nil
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -28,10 +26,9 @@ func ReadFiles(srcDir string, ignoreList []string) ([]string, error) {
 
 //ReadDirs reads directories from the source directory, excluding the directories based on ignore list pattern
 func ReadDirs(srcDir string, ignoreList []string) ([]string, error) {
-
 	var dirs []string
 	err := filepath.Walk(srcDir, func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() && arrayutil.IsPresent(ignoreList, info.Name()) {
+		if info.IsDir() && gau.IsPresent(ignoreList, info.Name()) {
 
 			return filepath.SkipDir
 		}
@@ -48,11 +45,9 @@ func ReadDirs(srcDir string, ignoreList []string) ([]string, error) {
 
 //ReadAll to read and dir from source dir
 /*func ReadAll(srcDir string, ignoreList []string) ([]string, error) {
-	zap.S().Infow("reading files", "from", srcDir)
 	var files []string
 	err := filepath.Walk(srcDir, func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() && arrayutil.IsPresent(ignoreList, info.Name()) {
-			zap.S().Infow("ignoring dir", "dir name", info.Name())
+		if info.IsDir() && gau.arrayutil.IsPresent(ignoreList, info.Name()) {
 			return filepath.SkipDir
 		}
 		files = append(files, path)
@@ -90,13 +85,11 @@ func IsExist(dir string) (bool, error) {
 		}
 		return false, err
 	}
-
 	return true, nil
 }
 
 //IsSame check if both source and target directories are same
 func IsSame(srcDir string, targetDir string) (bool, error) {
-
 	srcInfo, srcErr := os.Stat(srcDir)
 	if srcErr != nil {
 		return false, srcErr
