@@ -1,5 +1,5 @@
 # Guppy
-![build](https://github.com/bijeshos/guppy/workflows/Go/badge.svg)
+![build](https://github.com/bijeshos/guppy/workflows/go-build/badge.svg)
 ![Go Report Card](https://goreportcard.com/badge/github.com/bijeshos/guppy)
 
 **Guppy** provides a collection of utility functions. 
