@@ -64,3 +64,6 @@ godoc -http=:6060
 http://localhost:6060/pkg/github.com/bijeshos/guppy/
   
 - Traverse to respective sub packages
+
+## Why the name Guppy?
+The initial name considered for this library was **gup**, which stands for _Go Utility Programs_. Adding a __py__ at the end makes it easy to pronounce and remember, thanks to the cute fish that shares  the same name :-) 
