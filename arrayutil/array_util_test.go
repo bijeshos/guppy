@@ -7,24 +7,24 @@ import (
 
 func TestIsPresent(t *testing.T) {
 	cases := []struct {
-		in     []string
-		search string
-		want   bool
+		input    []string
+		search   string
+		expected bool
 	}{
-		{[]string{"a", "b", "c"}, "c", true},
+		{[]string{"apple", "mango", "orange"}, "orange", true},
 	}
 	for _, c := range cases {
-		got := IsPresent(c.in, c.search)
-		if got != c.want {
-			t.Errorf("IsPresent(%v, %v) == %v, want %t", c.search, c.in, got, c.want)
+		actual := IsPresent(c.input, c.search)
+		if actual != c.expected {
+			t.Errorf("IsPresent(%v, %v) == %v, expected %v", c.input, c.search, actual, c.expected)
 		}
 	}
 }
 
 func ExampleIsPresent() {
-	arr := []string{"a", "b", "c"}
-	input := "c"
-	got := IsPresent(arr, input)
-	log.Print("is present:", got)
+	input := []string{"apple", "mango", "orange"}
+	search := "orange"
+	result := IsPresent(input, search)
+	log.Print("is present:", result)
 
 }
