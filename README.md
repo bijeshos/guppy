@@ -34,9 +34,9 @@ go get github.com/bijeshos/guppy
 
 Then import respective packages into your project.
 
-To avoid any potential conflicts, it is suggested to use custom package name as follows:
+To avoid any potential conflicts, it is suggested to use package alias as follows:
 
-|Full Package Name|Suggested Custom name|Stands for|
+|Full Package|Suggested package alias|Stands for|
 |---|---|---|
 |github.com/bijeshos/guppy/arrayutil|gau| Guppy Array Util|
 |github.com/bijeshos/guppy/fileutil|gfu| Guppy File Util|
@@ -66,4 +66,4 @@ http://localhost:6060/pkg/github.com/bijeshos/guppy/
 - Traverse to respective sub packages
 
 ## Why the name Guppy?
-The initial name considered for this library was **gup**, which stands for _Go Utility Programs_. Adding a __py__ at the end makes it easy to pronounce and remember, thanks to the cute fish that shares  the same name :-) 
+Initial name considered for this library was **gup**, which stands for _Go Utility Programs_. Adding a __py__ at the end makes it easy to pronounce and remember, thanks to the cute fish that shares  the same name :-) 
