@@ -7,22 +7,22 @@ import (
 
 func TestRemoveSpecialChars(t *testing.T) {
 	cases := []struct {
-		in   string
-		want string
+		input    string
+		expected string
 	}{
 		{"abc#$d", "abcd"},
 	}
 	for _, c := range cases {
-		got := RemoveSpecialChars(c.in)
-		if got != c.want {
-			t.Errorf("RemoveSpecialChars(%v) == %v, want %v", c.in, got, c.want)
+		actual := RemoveSpecialChars(c.input)
+		if actual != c.expected {
+			t.Errorf("RemoveSpecialChars(%v) == %v, expected %v", c.input, actual, c.expected)
 		}
 	}
 }
 
 func ExampleRemoveSpecialChars() {
 	input := "abc#$d"
-	got := RemoveSpecialChars(input)
-	log.Print("after removing special chars:", got)
+	result := RemoveSpecialChars(input)
+	log.Print("after removing special chars:", result)
 
 }
