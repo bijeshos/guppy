@@ -3,7 +3,7 @@ package stringutil
 import "regexp"
 
 const (
-	SpecialCharsRegEx = "[~=?!+,#&@'\\(\\)\\[\\]\"]"
+	SpecialCharsRegEx = "[~=?!+,\\$#&@'\\(\\)\\[\\]\"]"
 	NonEnglishRegEx   = "\\W"
 	EmptyString       = ""
 )
