@@ -1,7 +1,7 @@
-package stringutil
+package stringutil_test
 
 import (
-	"log"
+	. "github.com/bijeshos/guppy/stringutil"
 	"testing"
 )
 
@@ -18,11 +18,4 @@ func TestRemoveSpecialChars(t *testing.T) {
 			t.Errorf("RemoveSpecialChars(%v) == %v, expected %v", c.input, actual, c.expected)
 		}
 	}
-}
-
-func ExampleRemoveSpecialChars() {
-	input := "abc#$d"
-	result := RemoveSpecialChars(input)
-	log.Print("after removing special chars:", result)
-
 }
