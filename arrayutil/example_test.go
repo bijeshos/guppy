@@ -9,6 +9,9 @@ func ExampleIsPresent() {
 	input := []string{"apple", "mango", "orange"}
 	search := "orange"
 	result := IsPresent(input, search)
-	log.Print("is present:", result)
+	log.Print(result)
+
+	//Output:
+	//true
 
 }
