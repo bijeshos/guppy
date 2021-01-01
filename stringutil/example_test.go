@@ -1,14 +1,14 @@
 package stringutil_test
 
 import (
+	"fmt"
 	. "github.com/bijeshos/guppy/stringutil"
-	"log"
 )
 
 func ExampleRemoveSpecialChars() {
 	input := "abc#$d"
 	result := RemoveSpecialChars(input)
-	log.Print(result)
+	fmt.Println(result)
 
 	//Output:
 	//abcd
